@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EvoraStore — Gantungan Kunci Denim dari Jeans Bekas</title>
+  <meta name="description" content="EvoraStore mengubah jeans bekas menjadi gantungan kunci denim handmade yang unik.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <a href="#home" class="logo">Evora<span>Store</span></a>
+  <nav id="menu">
+    <a href="#home">Home</a>
+    <a href="#cerita">Cerita</a>
+    <a href="#produk">Produk</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+  <button id="themeBtn" class="icon" aria-label="Ganti tema">🌙</button>
+  <button id="burger" class="icon" aria-label="Buka menu">☰</button>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section id="home" class="hero">
+    <div class="hero-text reveal">
+      <p class="eyebrow">Upcycled denim accessories</p>
+      <h1>Old jeans.<br><em>New stories.</em></h1>
+      <p class="sub">Kami mengubah denim yang terbuang menjadi gantungan kunci handmade yang punya karakter, cerita, dan kehidupan baru.</p>
+      <div class="cta">
+        <a class="btn" href="#produk">Lihat Koleksi →</a>
+        <a class="btn ghost" href="#kontak">Pesan Custom</a>
+      </div>
+      <ul class="stats">
+        <li><b>100%</b>denim bekas</li>
+        <li><b>Handmade</b>satu per satu</li>
+        <li><b>Rp15–20rb</b>harga ramah</li>
+      </ul>
+    </div>
+    <div class="hero-img reveal">
+      <img src="hero.jpg" alt="Koleksi gantungan kunci denim EvoraStore">
+      <span class="stamp">Made<br>with<br>care</span>
+      <div class="tag">One-of-a-kind<b>Denim Charms</b></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Give denim a second life</span><span>Handmade with love</span><span>Less waste, more creativity</span>
+      <span>Give denim a second life</span><span>Handmade with love</span><span>Less waste, more creativity</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="cerita" class="wrap">
+    <div class="story">
+      <img class="reveal" src="pita.jpg" alt="Charm denim dengan pita dan bintang">
+      <div class="reveal">
+        <p class="eyebrow">Cerita Kami</p>
+        <h2>Jeans lama yang tak lagi dipakai, <em>layak punya hidup kedua.</em></h2>
+        <p>EvoraStore lahir dari keresahan melihat jeans menumpuk di lemari lalu berakhir sebagai sampah. Kami mengumpulkan Levi's dan jeans bekas, mencucinya, lalu mengubahnya menjadi gantungan kunci yang lucu, kuat, dan layak dipamerkan.</p>
+        <ol class="steps">
+          <li><b>01</b><span><strong>Kumpulkan</strong> jeans bekas dari teman dan lingkungan sekitar.</span></li>
+          <li><b>02</b><span><strong>Potong &amp; jahit</strong> satu per satu, lengkap dengan bordir dan detail.</span></li>
+          <li><b>03</b><span><strong>Kirim</strong> sebagai gantungan unik yang tidak ada duanya.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUK -->
+  <section id="produk" class="wrap">
+    <p class="eyebrow">Koleksi</p>
+    <h2>Produk <em>Kami</em></h2>
+    <div class="filters">
+      <button class="chip active" data-filter="all">Semua</button>
+      <button class="chip" data-filter="bintang">Bintang</button>
+      <button class="chip" data-filter="karakter">Karakter</button>
+      <button class="chip" data-filter="charm">Charm Pita</button>
+    </div>
+    <div class="grid" id="productGrid"></div>
+  </section>
+
+  <!-- GALERI -->
+  <section id="galeri" class="wrap">
+    <p class="eyebrow">Galeri</p>
+    <h2>Dari tangan ke <em>kuncimu</em></h2>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <!-- KONTAK -->
+  <section id="kontak" class="wrap">
+    <p class="eyebrow">Kontak</p>
+    <h2>Mau pesan atau <em>custom?</em></h2>
+    <div class="contact">
+      <div class="info">
+        <p>📍 Kabupaten Tangerang, Banten</p>
+        <p>📱 WhatsApp: <a href="https://wa.me/6281412442485" target="_blank" rel="noopener">0814-1244-2485</a></p>
+        <p>📸 Instagram: <a href="https://instagram.com/evorastore" target="_blank" rel="noopener">@evorastore</a></p>
+        <p>🕘 Senin–Sabtu, 09.00–17.00 WIB</p>
+      </div>
+      <form id="form" novalidate>
+        <label>Nama <input id="nama" type="text" placeholder="Nama kamu"></label>
+        <label>Email <input id="email" type="email" placeholder="nama@email.com"></label>
+        <label>Pesan <textarea id="pesan" rows="4" placeholder="Mau pesan model apa?"></textarea></label>
+        <p id="formMsg" role="alert"></p>
+        <button class="btn" type="submit">Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 EvoraStore · Give denim a second life 👖</footer>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-box">
+    <button id="close" aria-label="Tutup">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
