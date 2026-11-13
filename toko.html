@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toko EvoraStore (Simulasi Marketplace)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ribbon{background:var(--acc);color:#fff;text-align:center;font-size:.78rem;font-weight:800;padding:8px 6%}
+    .store-banner{width:100%;aspect-ratio:16/6;object-fit:cover}
+    .store-head{max-width:1200px;margin:-44px auto 0;padding:0 6%;display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap}
+    .store-head img{width:96px;height:96px;border-radius:50%;border:4px solid var(--bg);background:var(--bg);object-fit:cover}
+    .store-head h1{font-size:2rem;line-height:1.1}
+    .store-head .meta{color:var(--mut);font-size:.85rem}
+    .badge{display:inline-block;background:var(--pale);color:var(--blue);font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:99px;margin-left:6px;vertical-align:middle}
+    .store-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+    .store-actions .btn{margin:0;padding:10px 20px;font-size:.82rem}
+    .about-box{background:var(--surf);border:1px solid var(--line);padding:18px 20px;display:grid;gap:6px;font-size:.92rem}
+    .about-box p{color:var(--mut)}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+    .toolbar input,.toolbar select{padding:10px 12px;border:1px solid var(--line);background:var(--surf);color:var(--ink);font:inherit;flex:1;min-width:140px}
+    .toolbar select{flex:0 0 auto}
+    .options{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .opt{border:1px solid var(--line);background:var(--surf);color:var(--ink);padding:7px 14px;cursor:pointer;font:600 .82rem 'Manrope',sans-serif}
+    .opt.sel{border-color:var(--blue);background:var(--pale);color:var(--blue)}
+    .qty{display:flex;align-items:center;gap:12px;margin:10px 0}
+    .qty button{width:34px;height:34px;border:1px solid var(--line);background:var(--surf);color:var(--ink);font-size:1.1rem;cursor:pointer}
+    .total{font-weight:800;font-size:1.1rem;color:var(--acc);margin:8px 0 12px}
+    .kat{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);font-weight:800}
+    .product h3{font:600 .9rem 'Manrope',sans-serif;line-height:1.4}
+    .empty{color:var(--mut);padding:20px 0}
+  </style>
+</head>
+<body>
+<div class="ribbon">Halaman simulasi toko online untuk tugas UAS, Aplikasi Komputer Bisnis. Pesanan diarahkan ke WhatsApp.</div>
+<header class="nav">
+  <a href="index.html" class="logo">Evora<span>Store</span></a>
+  <a href="index.html" class="btn ghost" style="margin:0;padding:8px 16px;font-size:.8rem">← Kembali ke Website</a>
+  <button id="themeBtn" class="icon" aria-label="Ganti tema">🌙</button>
+</header>
+
+<img class="store-banner" src="banner-evorastore.png" alt="Banner toko EvoraStore">
+<div class="store-head">
+  <img src="logo-evorastore.png" alt="Logo EvoraStore">
+  <div>
+    <h1>EvoraStore<span class="badge">Simulasi</span></h1>
+    <p class="meta">📍 Kabupaten Tangerang · 🕘 Senin–Sabtu 09.00–17.00 WIB</p>
+  </div>
+  <div class="store-actions">
+    <a class="btn" id="chatBtn" target="_blank" rel="noopener" href="#">Chat Penjual</a>
+  </div>
+</div>
+
+<main>
+  <section class="wrap" style="padding-top:36px">
+    <div class="about-box">
+      <strong>Tentang Toko</strong>
+      <p>EvoraStore mengubah jeans dan denim bekas menjadi gantungan kunci handmade yang unik. Setiap produk dikerjakan satu per satu dari bahan yang diselamatkan dari lemari, jadi lebih ramah lingkungan dan tidak ada dua yang sama persis. Cocok untuk tas, kunci, ransel, atau hadiah kecil. Mau custom? Chat kami! Old jeans. New stories.</p>
+      <p><b>Operasional:</b> Senin–Sabtu, 09.00–17.00 WIB. Chat dibalas pada jam operasional.</p>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:44px">
+    <h2>Semua <em>Produk</em></h2>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Cari produk di toko ini...">
+      <select id="sort"><option value="def">Urutkan</option><option value="asc">Harga terendah</option><option value="desc">Harga tertinggi</option></select>
+    </div>
+    <div class="filters">
+      <button class="chip active" data-filter="all">Semua</button>
+      <button class="chip" data-filter="bintang">Bintang</button>
+      <button class="chip" data-filter="karakter">Karakter</button>
+      <button class="chip" data-filter="charm">Charm Pita</button>
+    </div>
+    <div class="grid" id="productGrid"></div>
+    <p class="empty" id="empty" hidden>Produk tidak ditemukan.</p>
+  </section>
+</main>
+
+<footer>Simulasi toko online EvoraStore · Tugas UAS Aplikasi Komputer Bisnis</footer>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-box">
+    <button id="close" aria-label="Tutup">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const WA = "6281412442485";
+const BAHAN = "Denim/jeans bekas (upcycled), handmade";
+const products = [
+  { judul: "Gantungan Kunci Denim Bintang Kelinci Headphone Handmade Aksesori Tas Lucu Jeans Bekas", kategori: "bintang", harga: 20000, img: "p-bunny-headphone.jpg", variasi: ["Biru muda","Biru tua"], desk: "Bintang denim dengan bordir kelinci berheadphone yang gemas. Dibuat dari jeans bekas, jadi ramah lingkungan dan tiap pcs unik. Cocok dipasang di tas, ransel, atau kunci." },
+  { judul: "Gantungan Kunci Denim Bintang Bordir Merah Handmade Aksesori Tas Unik Jeans Bekas", kategori: "bintang", harga: 20000, img: "p-hero-star.jpg", variasi: ["Biru muda","Biru tua"], desk: "Bintang denim dengan bordir merah yang berani dan mencolok. Dijahit tangan dari jeans bekas yang diselamatkan dari lemari." },
+  { judul: "Gantungan Kunci Denim Bintang Kelinci Pink Imut Handmade Aksesori Tas Lucu", kategori: "bintang", harga: 18000, img: "p-bunny-pink.jpg", variasi: ["Biru muda","Biru tua"], desk: "Bintang denim dengan kelinci imut dan detail hati kecil. Lembut, lucu, dan pas untuk penyuka aksesori manis." },
+  { judul: "Gantungan Kunci Denim Bintang Motif Galaksi Lukis Tangan Handmade Jeans Bekas", kategori: "bintang", harga: 20000, img: "galaksi.jpg", variasi: ["Biru terang","Hitam malam"], desk: "Bintang denim dengan motif pusaran galaksi yang dilukis tangan dan jahitan tepi putih. Setiap pcs punya pola yang sedikit berbeda." },
+  { judul: "Gantungan Kunci Denim Kelinci Kancing Handmade Aksesori Tas Lucu Jeans Bekas", kategori: "karakter", harga: 18000, img: "p-bunny.jpg", variasi: ["Biru muda","Biru tua"], desk: "Gantungan kelinci dari denim bekas dengan kancing sebagai mata. Empuk, ringan, dan kuat dipakai sehari-hari." },
+  { judul: "Gantungan Kunci Denim Mini Bag Charm Patch Bintang Kancing Handmade Jeans Bekas", kategori: "karakter", harga: 15000, img: "p-mini-bag.jpg", variasi: ["Biru muda","Biru tua"], desk: "Tas mungil dari denim bekas dengan patch bintang dan kancing putih. Kecil, lucu, dan mudah dipadukan dengan tas apa saja." },
+  { judul: "Gantungan Kunci Denim Bintang Pita Tali Biru Rantai Handmade Aksesori Tas Jeans Bekas", kategori: "charm", harga: 17000, img: "p-pita-star.jpg", variasi: ["Tali biru","Tali hitam-putih"], desk: "Bintang denim dengan pita denim, rantai, dan tali warna yang bikin tampilan tas makin hidup." },
+  { judul: "Gantungan Kunci Denim Hati Pita Merah Beruang Mini Handmade Aksesori Tas Jeans Bekas", kategori: "charm", harga: 17000, img: "p-pita-heart.jpg", variasi: ["Tali biru","Tali hitam-putih"], desk: "Hati denim dengan pita merah dan charm beruang mungil. Manis, unik, dan cocok jadi hadiah." }
+];
+const rp = n => "Rp " + n.toLocaleString("id-ID");
+const $ = s => document.querySelector(s);
+let filter = "all";
+
+function render() {
+  const q = $("#search").value.trim().toLowerCase(), s = $("#sort").value;
+  let list = products.filter(p => (filter === "all" || p.kategori === filter) && p.judul.toLowerCase().includes(q));
+  if (s === "asc") list = [...list].sort((a, b) => a.harga - b.harga);
+  if (s === "desc") list = [...list].sort((a, b) => b.harga - a.harga);
+  $("#productGrid").innerHTML = list.map(p => `
+    <article class="product" data-i="${products.indexOf(p)}" style="cursor:pointer">
+      <img src="${p.img}" alt="" loading="lazy">
+      <div class="pbody"><span class="kat">${p.kategori}</span><h3>${p.judul}</h3><p class="price">${rp(p.harga)}</p></div>
+    </article>`).join("");
+  $("#empty").hidden = list.length > 0;
+}
+document.querySelectorAll(".chip").forEach(c => c.onclick = () => {
+  document.querySelector(".chip.active").classList.remove("active"); c.classList.add("active");
+  filter = c.dataset.filter; render();
+});
+$("#search").oninput = render; $("#sort").onchange = render;
+render();
+
+// ===== MODAL PRODUK =====
+const modal = $("#modal");
+const close = () => (modal.hidden = true);
+$("#close").onclick = close;
+modal.onclick = e => { if (e.target === modal) close(); };
+document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+
+$("#productGrid").addEventListener("click", e => {
+  const card = e.target.closest(".product"); if (!card) return;
+  const p = products[card.dataset.i]; let v = p.variasi[0], qty = 1;
+  const draw = () => {
+    $("#modalBody").innerHTML = `
+      <img src="${p.img}" alt="">
+      <div class="mtext">
+        <span class="kat">${p.kategori}</span>
+        <h3 style="font-size:1.05rem;line-height:1.35">${p.judul}</h3>
+        <p class="price">${rp(p.harga)}</p>
+        <p>${p.desk}</p>
+        <p><b>Bahan:</b> ${BAHAN}</p>
+        <p><b>Variasi:</b></p>
+        <div class="options">${p.variasi.map(x => `<button class="opt ${x === v ? "sel" : ""}" data-v="${x}">${x}</button>`).join("")}</div>
+        <div class="qty"><button id="min">−</button><b id="q">${qty}</b><button id="plus">+</button></div>
+        <p class="total">Total: ${rp(p.harga * qty)}</p>
+        <a class="btn" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent("Halo EvoraStore, aku mau pesan: " + p.judul + " | Variasi: " + v + " | Jumlah: " + qty + " | Total: " + rp(p.harga * qty))}">Beli Sekarang</a>
+      </div>`;
+    document.querySelectorAll(".opt").forEach(b => b.onclick = () => { v = b.dataset.v; draw(); });
+    $("#min").onclick = () => { if (qty > 1) { qty--; draw(); } };
+    $("#plus").onclick = () => { if (qty < 20) { qty++; draw(); } };
+  };
+  draw(); modal.hidden = false;
+});
+
+$("#chatBtn").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Halo EvoraStore, aku mau tanya produk.");
+
+// ===== TEMA =====
+const root = document.documentElement;
+function setTheme(t) { root.dataset.theme = t; $("#themeBtn").textContent = t === "dark" ? "☀️" : "🌙"; }
+setTheme(matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+$("#themeBtn").onclick = () => setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+</script>
+</body>
+</html>

@@ -70,6 +70,7 @@ $("#productGrid").addEventListener("click", e => {
       <h3>${p.nama}</h3><p>${p.desk}</p>
       <p class="price">${rupiah(p.harga)}</p>
       <a class="btn" href="https://wa.me/${WA}?text=${text}" target="_blank" rel="noopener">Pesan via WhatsApp</a>
+      <a class="btn ghost" href="toko.html">Lihat di Toko</a>
     </div>`);
 });
 
